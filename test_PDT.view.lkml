@@ -1,16 +1,17 @@
 view: test_pdt {
+  view_label: "Test PDT"
   derived_table: {
     sql:
       SELECT
-        gname
+        base_table.gname AS group_name
       FROM
-      base_table
+      talal_thesis.base_table
       ;;
   }
-  dimension: gname {
+  dimension: group_name {
     type: string
     primary_key: yes
-    sql: ${TABLE}.gname ;;
+    sql: ${TABLE}.group_name ;;
   }
 
 }
