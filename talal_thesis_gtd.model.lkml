@@ -16,8 +16,12 @@ persist_with: talal_thesis_gtd_default_datagroup
 
 explore: base_table {
   join: test_ndt {
-    sql_on: ${base_table.gname} = ${test_ndt.group_name}name} ;;
+    sql_on: ${base_table.gname} =${test_ndt.gname} ;;
     relationship: many_to_many
+  }
+
+  join: test_pdt {
+    sql_on: ${base_table.gname} = ${test_pdt.gname} ;;
   }
 }
 
