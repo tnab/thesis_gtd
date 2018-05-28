@@ -12,4 +12,5 @@ view: test_pdt {
     primary_key: yes
     sql: ${TABLE}.gname ;;
   }
+
 }

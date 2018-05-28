@@ -22,6 +22,7 @@ explore: base_table {
 
   join: test_pdt {
     sql_on: ${base_table.gname} = ${test_pdt.gname} ;;
+    relationship: many_to_many
   }
 }
 
