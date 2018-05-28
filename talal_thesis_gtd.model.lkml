@@ -7,11 +7,20 @@ include: "*.view"
 include: "*.dashboard"
 
 datagroup: talal_thesis_gtd_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "24 hours"
 }
 
 persist_with: talal_thesis_gtd_default_datagroup
 
 
-explore: base_table {}
+explore: base_table {
+  join: test_ndt {
+    sql_on: ${base_table.gname} = ${test_ndt.group_name}name} ;;
+    relationship: many_to_many
+  }
+}
+
+explore: test_ndt {}
+
+explore: test_pdt {}
