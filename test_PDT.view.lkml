@@ -6,7 +6,7 @@ view: test_pdt {
         base_table.gname AS group_name
       FROM
       talal_thesis.base_table
-      ;;
+     ;;
   }
   dimension: group_name {
     type: string
