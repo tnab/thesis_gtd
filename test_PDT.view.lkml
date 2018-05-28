@@ -2,7 +2,7 @@ view: test_pdt {
   view_label: "Test PDT"
   derived_table: {
     sql:
-      SELECT
+      SELECT DISTINCT
         base_table.gname AS group_name
       FROM
       talal_thesis.base_table
