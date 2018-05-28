@@ -12,3 +12,6 @@ datagroup: talal_thesis_gtd_default_datagroup {
 }
 
 persist_with: talal_thesis_gtd_default_datagroup
+
+
+explore: base_table {}
