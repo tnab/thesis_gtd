@@ -832,7 +832,7 @@ view: base_table {
 
   dimension: int_ideo {
     type: number
-    value_format_name: id
+    value_format_name:id
     sql: ${TABLE}.INT_IDEO ;;
   }
 
