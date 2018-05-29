@@ -13,19 +13,28 @@ datagroup: talal_thesis_gtd_default_datagroup {
 
 persist_with: talal_thesis_gtd_default_datagroup
 
+explore: base_table {}
 
-explore: base_table {
-  join: test_ndt {
-    sql_on: ${base_table.gname} =${test_ndt.group_name} ;;
-    relationship: many_to_many
-  }
 
-  join: test_pdt {
-    sql_on: ${base_table.gname} = ${test_pdt.group_name}name} ;;
-    relationship: many_to_many
-  }
+explore: terrorist_groups {
+  label: "Terrorist Groups"
 }
 
-explore: test_ndt {}
 
-explore: test_pdt {}
+
+# Testing stuff
+# explore: base_table {
+#   join: test_ndt {
+#     sql_on: ${base_table.gname} =${test_ndt.group_name} ;;
+#     relationship: one_to_many
+#   }
+#
+#   join: test_pdt {
+#     sql_on: ${base_table.gname} = ${test_pdt.group_name} ;;
+#     relationship: one_to_many
+#   }
+# }
+
+# explore: test_ndt {}
+#
+# explore: test_pdt {}
