@@ -17,9 +17,9 @@ explore: base_table {}
 
 
 explore: terrorist_groups {
+  cancel_grouping_fields: [terrorist_groups.total_fatalities, terrorist_groups.total_fatalities ]
   label: "Terrorist Groups"
 }
-
 
 
 # Testing stuff
@@ -34,7 +34,3 @@ explore: terrorist_groups {
 #     relationship: one_to_many
 #   }
 # }
-
-# explore: test_ndt {}
-#
-# explore: test_pdt {}

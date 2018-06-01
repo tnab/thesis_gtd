@@ -45,6 +45,23 @@ view: base_table {
     sql: ${TABLE}.extended ;;
   }
 
+
+  dimension_group: resolution {
+    description: "Date when incident was resovled."
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.resolution ;;
+  }
+
   #   ------------------------------------------------------------------------------
 
 # II. Incident Information
@@ -800,82 +817,48 @@ view: base_table {
     sql: ${TABLE}.INT_LOG ;;
   }
 
-
-
-
-
-
-# -------------------------------------------------------------------------------------
-
-  dimension: claim2 {
-    type: number
-    sql: ${TABLE}.claim2 ;;
-  }
-
-  dimension: claim3 {
-    type: string
-    sql: ${TABLE}.claim3 ;;
-  }
-
-
-  dimension: dbsource {
-    type: string
-    sql: ${TABLE}.dbsource ;;
-  }
-
-
-
-  dimension: int_any {
-    type: number
-    sql: ${TABLE}.INT_ANY ;;
-  }
-
   dimension: int_ideo {
+    description: "ideologically internation if group nationality is different from the targets/victims. '1' Yes, '0' No, '-9' Unknown"
+    label: "Ideologically International"
     type: number
     value_format_name:id
     sql: ${TABLE}.INT_IDEO ;;
   }
 
-
-
   dimension: int_misc {
+    hidden: yes
     type: number
     sql: ${TABLE}.INT_MISC ;;
   }
 
-
-  dimension_group: resolution {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.resolution ;;
+  dimension: int_any {
+    description: "Attack was international in any of the criteria. '1' Yes, '0' No, '-9' Unknown"
+    label: "International Component to Attack"
+    type: number
+    sql: ${TABLE}.INT_ANY ;;
   }
 
-  dimension: scite1 {
-    type: string
-    sql: ${TABLE}.scite1 ;;
-  }
+#   dimension: scite1 {
+#     type: string
+#     sql: ${TABLE}.scite1 ;;
+#   }
+#
+#   dimension: scite2 {
+#     type: string
+#     sql: ${TABLE}.scite2 ;;
+#   }
+#
+#   dimension: scite3 {
+#     type: string
+#     sql: ${TABLE}.scite3 ;;
+#   }
+#   dimension: dbsource {
+#     type: string
+#     sql: ${TABLE}.dbsource ;;
+#   }
 
-  dimension: scite2 {
-    type: string
-    sql: ${TABLE}.scite2 ;;
-  }
 
-  dimension: scite3 {
-    type: string
-    sql: ${TABLE}.scite3 ;;
-  }
-
-
-
+# -------------------------------------------------------------------------------------
   measure: count {
     type: count
     drill_fields: [gname, gsubname]
