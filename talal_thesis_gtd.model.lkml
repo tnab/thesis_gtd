@@ -17,11 +17,14 @@ explore: base_table {}
 
 
 explore: terrorist_groups {
-  cancel_grouping_fields: [terrorist_groups.total_fatalities, terrorist_groups.total_fatalities ]
   label: "Terrorist Groups"
+  join: base_table {
+    sql_on: ${base_table.gname} = ${terrorist_groups.group_name} ;;
+    relationship: many_to_many
+  }
 }
 
-
+explore: city_analysis {}
 # Testing stuff
 # explore: base_table {
 #   join: test_ndt {
