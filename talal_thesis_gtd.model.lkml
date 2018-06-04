@@ -15,6 +15,7 @@ persist_with: talal_thesis_gtd_default_datagroup
 
 explore: base_table {}
 
+explore: location_analysis {}
 
 explore: terrorist_groups {
   label: "Terrorist Groups"

@@ -17,5 +17,10 @@ view: city_analysis {
     label: "Total Kills Per City"
     type: sum
     sql: ${nkill} ;;
+    drill_fields: [city_details*]
+  }
+
+  set: city_details {
+    fields: [base_table.city]
   }
 }

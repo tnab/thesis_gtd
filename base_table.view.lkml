@@ -203,7 +203,7 @@ view: base_table {
 
   dimension: location {
     group_label: "Incident Location"
-    label: "Addition Location Info"
+    label: "Additional Location Info"
     type: string
     sql: ${TABLE}.location ;;
   }
