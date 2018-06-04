@@ -1,7 +1,7 @@
 view: location_analysis {
   derived_table: {
     explore_source: base_table {
-      column: eventid {}
+      column: eventid {}   #any SQL here at all?
       column: region_txt {}
       column: country_txt {}
       column: city {}
@@ -29,11 +29,18 @@ view: location_analysis {
   dimension: city {
     label: "Base Table City of Attack"
   }
-  dimension: latitude {
+  dimension: latitude { # SQL in here? can I even define these in NDTs ?
     type: number
+    hidden: yes
   }
   dimension: longitude {
     type: number
+    hidden: yes
+  }
+  dimension: location {
+    type: location
+    sql_latitude: ${latitude};;
+    sql_longitude: ${longitude} ;;
   }
   dimension: iday {
     label: "Base Table Day"
@@ -61,7 +68,15 @@ view: location_analysis {
     label: "Base Table Total Wounded"
     type: number
   }
-  measure: sum_nkill {
-    label: "Total "
+  measure: sum_nkill {  #all kinds of measures ok in here? advanced sql require PDTs?
+    label: "Total Fatalities "
+    type: sum
+    sql: ${nkill};;
   }
+  measure: sum_nkillus {
+    label: "Total US Fatalities"
+    type: sum
+    sql: ${nkillus} ;;
+  }
+
 }
