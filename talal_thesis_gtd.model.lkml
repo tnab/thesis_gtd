@@ -8,14 +8,20 @@ include: "*.dashboard"
 
 datagroup: talal_thesis_gtd_default_datagroup {
   sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "24 hours"
+  max_cache_age: "800 hours"
 }
 
 persist_with: talal_thesis_gtd_default_datagroup
 
 explore: base_table {}
 
-explore: location_analysis {}
+explore: location_analysis {
+  label: "Analysis"
+  join: terrorist_groups {
+    sql_on: ${location_analysis.eventid} = ${terrorist_groups.event_id} ;;
+    relationship: one_to_one
+  }
+}
 
 explore: terrorist_groups {
   label: "Terrorist Groups"

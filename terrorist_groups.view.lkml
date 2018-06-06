@@ -11,6 +11,9 @@ view: terrorist_groups {
       column: country {
         field: base_table.country_txt
       }
+      column: event_id {
+        field: base_table.eventid
+      }
     }
     datagroup_trigger: talal_thesis_gtd_default_datagroup
   }
@@ -35,10 +38,17 @@ view: terrorist_groups {
     sql: ${TABLE}.country  ;;
   }
 
+  dimension: event_id {
+    label: "Attack ID"
+    type: number
+    sql: ${TABLE}.eventid ;;
+  }
+
   measure: total_deaths {
     label: "Group Total Fatalities"
     type: sum
     sql: ${total_fatalities} ;;
+    drill_fields: [count_attacks_details*]
   }
 
   measure: count_attacks {
@@ -49,6 +59,6 @@ view: terrorist_groups {
 
 
   set: count_attacks_details {
-    fields: [country, base_table.city]
+    fields: [country, base_table.city, count_attacks, total_deaths]
   }
 }

@@ -13,21 +13,29 @@ view: location_analysis {
       column: nkill {}
       column: nkillus {}
       column: nwound {}
+#       derived_column: deadliest_region {
+#         sql: select rank() over(order by sum(nkill) desc)
+#         from base_table;;
+#       }
     }
   }
   dimension: eventid {
+    label: "Attack ID"
     description: "yyymmddd-xxxx (xxxx is the number of the attack on the same day"
     value_format: "0"
     type: number
   }
   dimension: region_txt {
-    label: "Base Table Region of Attack"
+    label: "Region of Attack"
+    drill_fields: [country_txt, iyear]
   }
   dimension: country_txt {
-    label: "Base Table Country of Attack"
+    label: "Country of Attack"
+    drill_fields: [city, iyear]
   }
   dimension: city {
-    label: "Base Table City of Attack"
+    label: "City of Attack"
+    drill_fields: [iyear]
   }
   dimension: latitude { # SQL in here? can I even define these in NDTs ?
     type: number
@@ -43,18 +51,21 @@ view: location_analysis {
     sql_longitude: ${longitude} ;;
   }
   dimension: iday {
-    label: "Base Table Day"
+    label: "Attack Day"
     description: "'0' if the exact day of attack is not known"
     type: number
   }
   dimension: imonth {
-    label: "Base Table Month"
+    label: "Attack Month"
     description: "'0' if the exact month of attack is not known"
     type: number
+    drill_fields: [iday]
   }
   dimension: iyear {
-    label: "Base Table Year"
+    label: "Attack Year"
+    value_format: "0"
     type: number
+    drill_fields: [imonth]
   }
   dimension: nkill {
     label: "Fatalities In Attack"
@@ -65,7 +76,7 @@ view: location_analysis {
     type: number
   }
   dimension: nwound {
-    label: "Base Table Total Wounded"
+    label: "Total Wounded"
     type: number
   }
   measure: sum_nkill {  #all kinds of measures ok in here? advanced sql require PDTs?
@@ -78,5 +89,14 @@ view: location_analysis {
     type: sum
     sql: ${nkillus} ;;
   }
+  measure: attack_count {
+    label: "Number of Attacks"
+    type: count
+    drill_fields: [region_drill*]
+  }
 
+
+set: region_drill  {
+  fields: [country_txt, city, attack_count, sum_nkill]
+  }
 }
