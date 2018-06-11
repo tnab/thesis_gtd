@@ -13,7 +13,15 @@ datagroup: talal_thesis_gtd_default_datagroup {
 
 persist_with: talal_thesis_gtd_default_datagroup
 
-explore: base_table {}
+explore: base_table {
+  label: "Analysis"
+  join: terrorist_orgs {
+    sql_on: ${terrorist_orgs.group_name} = ${base_table.gname} ;;
+    relationship: many_to_one
+  }
+}
+
+explore: terrorist_orgs {}
 
 explore: location_analysis {
   label: "Analysis"

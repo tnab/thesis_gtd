@@ -14,8 +14,16 @@ view: terrorist_groups {
       column: event_id {
         field: base_table.eventid
       }
+
+      derived_column: group_rank {
+        sql:  rank() over ( order by base_table.total_deaths desc) ;;
+      }
+
+      derived_column: max_fatalities {
+        sql: max(total_fatalities) over (partition by group_name ) ;;
+      }
     }
-    datagroup_trigger: talal_thesis_gtd_default_datagroup
+#     datagroup_trigger: talal_thesis_gtd_default_datagroup
   }
 
   dimension: group_name {
@@ -24,6 +32,14 @@ view: terrorist_groups {
     primary_key: yes
     sql: ${TABLE}.group_name ;;
     drill_fields: [base_table.gsubname]
+  }
+
+  dimension: group_rank {
+    type: number
+  }
+
+  dimension: max_fatalities {
+    type: number
   }
 
   dimension: total_fatalities {
@@ -43,6 +59,11 @@ view: terrorist_groups {
     type: number
     sql: ${TABLE}.eventid ;;
   }
+
+#   dimension: group_image {
+#     sql: ${group_name} ;;
+#     html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q={{ value }}.png"  /> ;;
+#   }
 
   measure: total_deaths {
     label: "Group Total Fatalities"

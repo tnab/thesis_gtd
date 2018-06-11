@@ -1,6 +1,30 @@
 view: base_table {
   sql_table_name: talal_thesis.base_table ;;
+  label: "Attacks"
 
+# Added fields and attempts
+#
+#   filter: incident_country {
+#     label: "Country of Attack"
+#     type:  string
+#     suggest_dimension: country_txt
+#
+#   }
+#
+#   dimension: country_satisfies_filter {
+#     type: yesno
+#     hidden: yes
+#     sql:{ % condition incident_country % } ${country_txt} { % endcondition % } ;;
+#   }
+#
+#   measure: incident_count {
+#     label: "Country Incident Count"
+#     type: count
+#     filters: {
+#       field: country_satisfies_filter
+#       value: "yes"
+#     }
+#   }
 
 # I. GTD ID and Date
 
