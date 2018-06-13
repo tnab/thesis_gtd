@@ -24,7 +24,7 @@ explore: base_table {
 explore: terrorist_orgs {}
 
 explore: location_analysis {
-  label: "Analysis"
+  label: "Location Analysis"
   join: terrorist_groups {
     sql_on: ${location_analysis.eventid} = ${terrorist_groups.event_id} ;;
     relationship: one_to_one

@@ -26,14 +26,14 @@ view: terrorist_orgs {
     label: "Total Attacks"
     type: number
     sql: ${TABLE}.total_attacks ;;
-    value_format: "0.##"
+    value_format: "0"
   }
 
   dimension: total_kills {
     label: "Total Fatalities"
     type: number
     sql: ${TABLE}.total_kills ;;
-    value_format: "0.##"
+    value_format: "0"
   }
 
   dimension: number_of_suicide_attacks {
@@ -78,7 +78,7 @@ view: terrorist_orgs {
 
   dimension: group_image {
     sql: ${group_name} ;;
-    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}%10console"  />
+    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}%25console"  />
     ;;
   }
 

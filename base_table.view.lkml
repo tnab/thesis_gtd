@@ -41,6 +41,7 @@ view: base_table {
     label: "Year"
     type: number
     sql: ${TABLE}.iyear ;;
+    value_format: "0"
   }
 
   dimension: imonth {
@@ -49,6 +50,7 @@ view: base_table {
     label: "Month"
     type: number
     sql: ${TABLE}.imonth ;;
+    value_format: "0"
   }
 
   dimension: iday {
@@ -57,6 +59,16 @@ view: base_table {
     label: "Day"
     type: number
     sql: ${TABLE}.iday ;;
+    value_format: "0"
+  }
+
+  dimension_group: incident {
+    group_label: "Incident Date"
+    type: time
+    datatype: timestamp
+    sql: CONCAT(${iyear},"-",${imonth},"-",${iday});;
+    timeframes: [raw,hour,date,day_of_month,month_name, day_of_week,day_of_week_index,week,month,year]
+#     drill_fields: [incident_hour]
   }
 
   dimension: approxdate {
@@ -597,6 +609,7 @@ view: base_table {
 
   dimension: gname {
     group_label: "Perpetrator Information"
+    suggest_dimension: gname
     label: "Group Name"
     type: string
     sql: ${TABLE}.gname ;;
@@ -742,42 +755,43 @@ view: base_table {
 
   dimension: nkill {
     group_label: "Casualties and Consquences"
-    label: "Total Fatalities"
+    label: "Attack Fatalities"
     type: number
     sql: ${TABLE}.nkill ;;
   }
 
   dimension: nkillus {
     group_label: "Casualties and Consquences"
-    label: "Total US Fatalities"
+    label: "Attack US Fatalities"
     type: number
     sql: ${TABLE}.nkillus ;;
   }
 
   dimension: nkillter {
     group_label: "Casualties and Consquences"
-    label: "Total Perpetrator Fatalities"
+    label: "Attack Perpetrator Fatalities"
     type: number
     sql: ${TABLE}.nkillter ;;
   }
 
   dimension: nwound {
     group_label: "Casualties and Consquences"
-    label: "Total Wounded"
+    label: "Attack Wounded"
     type: number
     sql: ${TABLE}.nwound ;;
   }
 
   dimension: nwoundus {
     group_label: "Casualties and Consquences"
-    label: "Total US Wounded "
+    label: "Attack US Wounded "
     type: number
     sql: ${TABLE}.nwoundus ;;
   }
 
   dimension: nwoundte {
     group_label: "Casualties and Consquences"
-    label: "Total Perp Wounded"
+    label: "Attack
+    Perp Wounded"
     type: number
     sql: ${TABLE}.nwoundte ;;
   }
@@ -829,7 +843,7 @@ view: base_table {
 
   dimension: nhostkid {
     group_label: "Casualties and Consquences"
-    label: "Total Hostages"
+    label: "Attack Hostages"
     type: number
     value_format_name: id
     sql: ${TABLE}.nhostkid ;;
@@ -1005,8 +1019,15 @@ view: base_table {
 
 # -------------------------------------------------------------------------------------
   measure: count {
+    label: "Number of Attacks"
     type: count
     drill_fields: [gname, gsubname]
   }
 
+  measure: total_fatalities {
+    label: "Total Fatalities"
+    type: sum
+    sql: ${nkill} ;;
   }
+
+}
