@@ -99,6 +99,13 @@ view: location_analysis {
     type: string
   }
 
+  dimension: country_flag {
+    label: "Flag"
+    sql: ${country_txt} ;;
+    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}" width="550" height="400"  />
+      ;;
+  }
+
   measure: sum_nkill {  #all kinds of measures ok in here? advanced sql require PDTs?
     label: "Total Fatalities "
     type: sum
@@ -124,7 +131,7 @@ view: location_analysis {
   }
 
   filter: incident_country {
-    label: "Country of Attack"
+    label: "Country of Attack Filter"
     type:  string
     suggest_dimension: country_txt
   }
@@ -144,7 +151,7 @@ view: location_analysis {
     }
   }
 
-set: region_drill  {
-  fields: [country_txt, city, attack_count, sum_nkill]
+  set: region_drill  {
+    fields: [country_txt, city, attack_count, sum_nkill]
   }
 }

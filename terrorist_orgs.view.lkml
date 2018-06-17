@@ -78,7 +78,7 @@ view: terrorist_orgs {
 
   dimension: group_image {
     sql: ${group_name} ;;
-    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}%25console"  />
+    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}" width="550" height="400"  />
     ;;
   }
 
