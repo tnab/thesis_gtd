@@ -64,7 +64,17 @@ view: base_table {
     type: time
     datatype: date
     sql: DATE(${iyear}, ${imonth}, ${iday}) ;;
-    timeframes: [raw,hour,date,day_of_month,month_name, day_of_week,day_of_week_index,week,month,year]
+    timeframes: [
+      raw,
+      date,
+      week,
+      day_of_week,
+      day_of_week_index,
+      month,
+      month_name,
+      day_of_month,
+      year
+    ]
 #     drill_fields: [incident_hour]
   }
 
