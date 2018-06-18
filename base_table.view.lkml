@@ -39,34 +39,31 @@ view: base_table {
   dimension: iyear {
     group_label: "Event ID and Date"
     label: "Year"
-    type: string
+    type: number
     sql: ${TABLE}.iyear ;;
-    value_format: "0"
   }
 
   dimension: imonth {
     group_label: "Event ID and Date"
     description:"'0' if the exact month of attack is not known"
     label: "Month"
-    type: string
-    sql: ${TABLE}.imonth;;
-    value_format: "0"
+    type: number
+    sql: ${TABLE}.imonth ;;
   }
 
   dimension: iday {
     group_label: "Event ID and Date"
     description: "'0' if the exact day of attack is not known"
     label: "Day"
-    type: string
+    type: number
     sql: ${TABLE}.iday ;;
-    value_format: "0"
   }
 
   dimension_group: incident {
     group_label: "Incident Date"
     type: time
-#     datatype: date
-    sql: CONCAT(${iyear},"-",${imonth},"-",${iday}) ;;
+    datatype: date
+    sql: DATE(${iyear}, ${imonth}, ${iday}) ;;
     timeframes: [raw,hour,date,day_of_month,month_name, day_of_week,day_of_week_index,week,month,year]
 #     drill_fields: [incident_hour]
   }
