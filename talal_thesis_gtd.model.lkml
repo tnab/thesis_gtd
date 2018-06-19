@@ -21,6 +21,8 @@ explore: base_table {
   }
 }
 
+explore: coalition_operations {}
+
 explore: terrorist_orgs {}
 
 explore: location_analysis {
