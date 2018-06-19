@@ -78,9 +78,11 @@ view: terrorist_orgs {
 
   dimension: group_image {
     sql: ${group_name} ;;
-    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}" width="550" height="400"  />
+    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}" width="100%"   />
     ;;
   }
+
+#   width="550" height="400"
 
 #   score to be calculated and potentially tied to other events
 #   dimension: lethality {

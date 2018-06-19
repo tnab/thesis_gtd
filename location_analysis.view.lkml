@@ -102,7 +102,7 @@ view: location_analysis {
   dimension: country_flag {
     label: "Flag"
     sql: ${country_txt} ;;
-    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}" width="550" height="400"  />
+    html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}" width="100%"  />
       ;;
   }
 

@@ -55,4 +55,9 @@ view: coalition_operations {
     type: count
     drill_fields: [operation_name]
   }
+
+  measure: test_count {
+    type: count_distinct
+    sql: ${op_start_date_date} ;;
+  }
 }
