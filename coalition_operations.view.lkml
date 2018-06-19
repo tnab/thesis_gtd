@@ -8,10 +8,29 @@ view: coalition_operations {
     sql: ${TABLE}.string_field_0 ;;
   }
 
+#   dimension: op_start_date {
+#     label: "Op Start Date"
+#     type: string
+#     sql: ${TABLE}.string_field_1 ;;
+#   }
+
   dimension_group: op_start_date {
-    label: "Op Start Date"
+    group_label: "Op Start Date"
     type: time
-    sql: CAST (${TABLE}.string_field_1 AS timestamp )  ;;
+    datatype: date
+    sql: CAST(${TABLE}.string_field_1 AS timestamp) ;;
+    timeframes: [
+      raw,
+      date,
+      week,
+      day_of_week,
+      day_of_week_index,
+      month,
+      month_name,
+      day_of_month,
+      year
+    ]
+#      drill_fields: [incident_hour]
   }
 
   dimension: op_end_date{
