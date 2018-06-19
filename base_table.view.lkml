@@ -41,7 +41,6 @@ view: base_table {
     label: "Year"
     type: number
     sql: ${TABLE}.iyear ;;
-#     value_format: "0"
   }
 
   dimension: imonth {
@@ -49,8 +48,7 @@ view: base_table {
     description:"'0' if the exact month of attack is not known"
     label: "Month"
     type: number
-    sql: ${TABLE}.imonth;;
-#     value_format: "0"
+    sql: ${TABLE}.imonth ;;
   }
 
   dimension: iday {
@@ -59,16 +57,25 @@ view: base_table {
     label: "Day"
     type: number
     sql: ${TABLE}.iday ;;
-#     value_format: "0"
   }
 
   dimension_group: incident {
     group_label: "Incident Date"
     type: time
-    datatype: timestamp
-    sql: CAST(CONCAT(${TABLE}.iyear},"-",${TABLE}.imonth,"-",${TABLE}.iday) as TIMESTAMP);;
-    timeframes: [raw,hour,date,day_of_month,month_name, day_of_week,day_of_week_index,week,month,year]
-    drill_fields: [incident_hour]
+    datatype: date
+    sql: DATE(${iyear}, ${imonth}, ${iday}) ;;
+    timeframes: [
+      raw,
+      date,
+      week,
+      day_of_week,
+      day_of_week_index,
+      month,
+      month_name,
+      day_of_month,
+      year
+    ]
+#     drill_fields: [incident_hour]
   }
 
   dimension: approxdate {
