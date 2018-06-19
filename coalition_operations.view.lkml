@@ -5,7 +5,7 @@ view: coalition_operations {
     label: "Op Name"
     primary_key: yes
     type: string
-    sql: ${TABLE}.string_field_0 ;;
+    sql: ${TABLE}.battle_operation_name ;;
   }
 
 #   dimension: op_start_date {
@@ -18,7 +18,7 @@ view: coalition_operations {
     group_label: "Op Start Date"
     type: time
     datatype: date
-    sql: CAST(${TABLE}.string_field_1 AS timestamp) ;;
+    sql: ${TABLE}.from_date ;;
     timeframes: [
       raw,
       date,
@@ -36,19 +36,19 @@ view: coalition_operations {
   dimension: op_end_date{
     label: "Op End Date"
     type: string
-    sql: ${TABLE}.string_field_2 ;;
+    sql: ${TABLE}.to_date ;;
   }
 
   dimension: op_location {
     label: "Op Location"
     type: string
-    sql: ${TABLE}.string_field_3 ;;
+    sql: ${TABLE}.location ;;
   }
 
   dimension: op_purpose {
     label: "Op Purpose"
     type: string
-    sql: ${TABLE}.string_field_4 ;;
+    sql: ${TABLE}.purpose_result ;;
   }
 
   measure: count {
