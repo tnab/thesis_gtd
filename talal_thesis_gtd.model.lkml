@@ -19,7 +19,12 @@ explore: base_table {
     sql_on: ${terrorist_orgs.group_name} = ${base_table.gname} ;;
     relationship: many_to_one
   }
+  join: coalition_operations {
+    sql_on: ${base_table.incident_date} = ${coalition_operations.op_start_date_date} ;;
+    relationship: many_to_many
+  }
 }
+explore: coalition_operations {}
 
 explore: terrorist_orgs {}
 
@@ -31,15 +36,15 @@ explore: location_analysis {
   }
 }
 
-explore: terrorist_groups {
-  label: "Terrorist Groups"
-  join: base_table {
-    sql_on: ${base_table.gname} = ${terrorist_groups.group_name} ;;
-    relationship: many_to_many
-  }
-}
+# explore: terrorist_groups {
+#   label: "Terrorist Groups"
+#   join: base_table {
+#     sql_on: ${base_table.gname} = ${terrorist_groups.group_name} ;;
+#     relationship: many_to_many
+#   }
+# }
 
-explore: city_analysis {}
+# explore: city_analysis {}
 # Testing stuff
 # explore: base_table {
 #   join: test_ndt {

@@ -63,7 +63,8 @@ view: base_table {
     group_label: "Incident Date"
     type: time
     datatype: date
-    sql: DATE(${iyear}, ${imonth}, ${iday}) ;;
+    sql: DATE(${iyear}, CASE WHEN ${imonth} = 0 THEN 1 ELSE ${imonth} END,
+    CASE WHEN ${iday} = 0 THEN 1 ELSE ${iday} END) ;;
     timeframes: [
       raw,
       date,
