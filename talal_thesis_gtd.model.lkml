@@ -13,6 +13,20 @@ datagroup: talal_thesis_gtd_default_datagroup {
 
 persist_with: talal_thesis_gtd_default_datagroup
 
+explore: date_table {
+  label: "Date Analysis"
+  join: base_table {
+    sql_on: ${date_table.date_field_date} = ${base_table.incident_date} ;;
+    relationship: one_to_many
+  }
+
+  join: coalition_operations {
+    sql_on: ${date_table.date_field_date} = ${coalition_operations.op_start_date_date} ;;
+    relationship: one_to_many
+  }
+}
+
+
 explore: base_table {
   label: "Analysis"
   join: terrorist_orgs {

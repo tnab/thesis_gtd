@@ -32,6 +32,7 @@ view: base_table {
     group_label: "Event ID and Date"
     description: "yyymmddd-xxxx (xxxx is the number of the attack on the same day"
     type: number
+    primary_key: yes
     value_format_name: id
     sql: ${TABLE}.eventid ;;
   }
