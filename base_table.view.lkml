@@ -248,9 +248,10 @@ view: base_table {
 
   dimension: location {
     group_label: "Incident Location"
-    label: "Additional Location Info"
-    type: string
-    sql: ${TABLE}.location ;;
+    label: "Map Location"
+    type: location
+    sql_latitude: ${latitude};;
+    sql_longitude: ${longitude} ;;
   }
 
   dimension: latitude {
