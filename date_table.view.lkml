@@ -19,4 +19,26 @@ view: date_table {
     ]
     sql: ${TABLE}.date_field ;;
   }
+
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    type: string
+    allowed_value: { value: "Date" }
+    allowed_value: { value: "Week" }
+    allowed_value: { value: "Month" }
+    allowed_value: { value: "Year" }
+    default_value: "Month"
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'Date' THEN ${date_table.date_field_date}
+    WHEN {% parameter timeframe_picker %} = 'Week' THEN ${date_table.date_field_week}
+    WHEN{% parameter timeframe_picker %} = 'Month' THEN ${date_table.date_field_month}
+    WHEN{% parameter timeframe_picker %} = 'Year' THEN ${date_table.date_field_year}
+    END ;;
+  }
+
 }

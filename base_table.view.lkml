@@ -3,27 +3,17 @@ view: base_table {
   label: "Attacks"
 
 # Added fields and attempts
-#
-  filter: incident_country {
-    label: "Country of Attack"
-    type:  string
-    suggest_dimension: country_txt
 
-  }
-
-  dimension: country_satisfies_filter {
-    type: yesno
-
-    sql:{% condition incident_country %} ${country_txt} {% endcondition %} ;;
-  }
-
-  measure: incident_count {
-    label: "Country Incident Count"
+  measure: count {
+    label: "Number of Attacks"
     type: count
-    filters: {
-      field: country_satisfies_filter
-      value: "yes"
-    }
+    drill_fields: [gname, gsubname]
+  }
+
+  measure: total_fatalities {
+    label: "Total Fatalities"
+    type: sum
+    sql: ${nkill} ;;
   }
 
 # I. GTD ID and Date
@@ -1028,16 +1018,6 @@ view: base_table {
 
 
 # -------------------------------------------------------------------------------------
-  measure: count {
-    label: "Number of Attacks"
-    type: count
-    drill_fields: [gname, gsubname]
-  }
 
-  measure: total_fatalities {
-    label: "Total Fatalities"
-    type: sum
-    sql: ${nkill} ;;
-  }
 
 }
