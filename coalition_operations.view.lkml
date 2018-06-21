@@ -8,12 +8,6 @@ view: coalition_operations {
     sql: ${TABLE}.battle_operation_name ;;
   }
 
-#   dimension: op_start_date {
-#     label: "Op Start Date"
-#     type: string
-#     sql: ${TABLE}.string_field_1 ;;
-#   }
-
   dimension_group: op_start_date {
     group_label: "Op Start Date"
     type: time
@@ -30,7 +24,6 @@ view: coalition_operations {
       day_of_month,
       year
     ]
-#      drill_fields: [incident_hour]
   }
 
   dimension: op_end_date{
@@ -53,11 +46,7 @@ view: coalition_operations {
 
   measure: count {
     type: count
-    drill_fields: [operation_name]
+    drill_fields: [operation_name, op_start_date_date]
   }
 
-  measure: test_count {
-    type: count_distinct
-    sql: ${op_start_date_date} ;;
-  }
 }

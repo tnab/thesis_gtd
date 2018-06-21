@@ -34,10 +34,10 @@ view: date_table {
     type: string
     sql:
     CASE
-    WHEN {% parameter timeframe_picker %} = 'Date' THEN ${date_table.date_field_date}
-    WHEN {% parameter timeframe_picker %} = 'Week' THEN ${date_table.date_field_week}
-    WHEN{% parameter timeframe_picker %} = 'Month' THEN ${date_table.date_field_month}
-    WHEN{% parameter timeframe_picker %} = 'Year' THEN ${date_table.date_field_year}
+    WHEN {% parameter timeframe_picker %} = 'Date' THEN CAST(${date_field_date} AS string)
+    WHEN {% parameter timeframe_picker %} = 'Week' THEN CAST(${date_field_week} AS string)
+    WHEN {% parameter timeframe_picker %} = 'Month' THEN CAST(${date_field_month} AS string)
+    WHEN {% parameter timeframe_picker %} = 'Year' THEN CAST(${date_field_year} AS string)
     END ;;
   }
 
