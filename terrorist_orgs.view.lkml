@@ -10,7 +10,6 @@ view: terrorist_orgs {
       sum(success) as success_count,
       rank() over(order by sum(nkill) desc) AS group_rank,
       max(nkill) AS deadliest_attack_kills
-
       FROM talal_thesis.base_table
       GROUP BY 1
       ;;
@@ -79,6 +78,10 @@ view: terrorist_orgs {
     sql: ${group_name} ;;
     html: <img src="https://morning-stream-32250.herokuapp.com/api.php?q=flagof{{value | url_param_escape }}" width="100%"   />
       ;;
+  }
+
+  measure: group_count {
+    type: count
   }
 
 #   score to be calculated and potentially tied to other events

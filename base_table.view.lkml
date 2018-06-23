@@ -16,6 +16,12 @@ view: base_table {
     sql: ${nkill} ;;
   }
 
+#   measure: group_count {
+#     label: "Group Count"
+#     type: count
+#     sql: count(${gname}) as count ;;
+#   }
+
 # I. GTD ID and Date
 
   dimension: eventid {
