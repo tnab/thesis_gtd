@@ -1,5 +1,5 @@
 view: coalition_operations {
-  sql_table_name: talal_thesis.coalition_operations ;;
+  sql_table_name: talal_thesis.coalition_ops ;;
 
   dimension: operation_name {
     label: "Op Name"
@@ -32,6 +32,12 @@ view: coalition_operations {
     sql: ${TABLE}.to_date ;;
   }
 
+  dimension: country {
+    label: "Country"
+    type: string
+    sql: ${TABLE}.country ;;
+  }
+
   dimension: op_location {
     label: "Op Location"
     type: string
@@ -44,9 +50,44 @@ view: coalition_operations {
     sql: ${TABLE}.purpose_result ;;
   }
 
+  filter: country_filter {
+    type: string
+    suggest_dimension: country
+  }
+
+  dimension: country_satisfies_filter {
+    type: yesno
+    hidden: yes
+    sql: {% condition country_filter %} ${country} {% endcondition %} ;;
+  }
+
+  measure: count_dynamic_country{
+    type: count
+    filters: {
+      field: country_satisfies_filter
+      value: "yes"
+    }
+    drill_fields: [coalition.operations.operation_name, coalition_operations.op_start_date_date]
+  }
+
+#   parameter: coalition_ops_country {
+#     label: "Coalition Country of Attack"
+#     type: string
+#     allowed_value: { value: "Afghanistan" }
+#     allowed_value: {value: "Iraq" }
+#     default_value: "Iraq"
+#   }
+
   measure: count {
     type: count
-    drill_fields: [operation_name, op_start_date_date]
+    drill_fields: [coalition.operations.operation_name, coalition_operations.op_start_date_date]
   }
+
+#   measure: ops_number {
+#     type: sum
+#     sql: CASE
+#     WHEN {% parameter coalition_ops_country %} = "Iraq"
+#     ;;
+#   }
 
 }

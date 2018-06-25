@@ -7,13 +7,14 @@ view: base_table {
   measure: count {
     label: "Number of Attacks"
     type: count
-    drill_fields: [gname, gsubname]
+    drill_fields: [gname, gsubname, city]
   }
 
   measure: total_fatalities {
     label: "Total Fatalities"
     type: sum
     sql: ${nkill} ;;
+    drill_fields: [city, gname, nkill]
   }
 
 #   measure: group_count {

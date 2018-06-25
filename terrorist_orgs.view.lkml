@@ -84,12 +84,4 @@ view: terrorist_orgs {
     type: count
   }
 
-#   score to be calculated and potentially tied to other events
-#   dimension: lethality {
-#     label: "Lethality"
-#     type: number
-#     sql:  ;;
-#
-#   }
-
 }
