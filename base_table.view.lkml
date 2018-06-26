@@ -203,8 +203,10 @@ view: base_table {
   dimension: country_txt {
     group_label: "Incident Location"
     label:  "Country of Attack"
+    map_layer_name: countries
     type: string
     sql: ${TABLE}.country_txt ;;
+
   }
 
   dimension: region {
@@ -452,14 +454,14 @@ view: base_table {
 # VI. Target/Victim Information
 
   dimension: targtype1 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: number
     hidden: yes
     sql: ${TABLE}.targtype1 ;;
   }
 
   dimension: targtype1_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     description: "General type of target/victim"
     label: "Target Type - General"
     type: string
@@ -467,14 +469,14 @@ view: base_table {
   }
 
   dimension: targsubtype1 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     hidden: yes
     type: number
     sql: ${TABLE}.targsubtype1 ;;
   }
 
   dimension: targsubtype1_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     description: "More specific type of target/victim"
     label: "Target Type - Category"
     type: string
@@ -483,14 +485,14 @@ view: base_table {
 
 
   dimension: corp1 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     label: "Entity"
     type: string
     sql: ${TABLE}.corp1 ;;
   }
 
   dimension: target1 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     description: "Specific target"
     label: "Specific Target"
     type: string
@@ -498,113 +500,113 @@ view: base_table {
   }
 
   dimension: natlty1 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: number
     sql: ${TABLE}.natlty1 ;;
   }
 
   dimension: natlty1_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     label: "Target Nationality"
     type: string
     sql: ${TABLE}.natlty1_txt ;;
   }
 
   dimension: targtype2 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: number
     hidden: yes
     sql: ${TABLE}.targtype2 ;;
   }
 
   dimension: targtype2_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.targtype2_txt ;;
   }
 
   dimension: targsubtype2 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     hidden: yes
     type: number
     sql: ${TABLE}.targsubtype2 ;;
   }
 
   dimension: targsubtype2_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.targsubtype2_txt ;;
   }
 
   dimension: corp2 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.corp2 ;;
   }
 
   dimension: target2 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.target2 ;;
   }
 
   dimension: natlty2 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: number
     sql: ${TABLE}.natlty2 ;;
   }
 
   dimension: natlty2_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.natlty2_txt ;;
   }
 
   dimension: targtype3 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     hidden: yes
     sql: ${TABLE}.targtype3 ;;
   }
 
   dimension: targtype3_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.targtype3_txt ;;
   }
 
   dimension: targsubtype3 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     hidden: yes
     type: string
     sql: ${TABLE}.targsubtype3 ;;
   }
 
   dimension: targsubtype3_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.targsubtype3_txt ;;
   }
   dimension: corp3 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.corp3 ;;
   }
 
   dimension: target3 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.target3 ;;
   }
 
   dimension: natlty3 {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.natlty3 ;;
   }
 
   dimension: natlty3_txt {
-    group_label: "Target/Victime Information"
+    group_label: "Target/Victim Information"
     type: string
     sql: ${TABLE}.natlty3_txt ;;
   }

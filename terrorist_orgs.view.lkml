@@ -26,6 +26,7 @@ view: terrorist_orgs {
     type: number
     sql: ${TABLE}.total_attacks ;;
     value_format: "0"
+    drill_fields: [details*]
   }
 
   dimension: total_kills {
@@ -33,6 +34,7 @@ view: terrorist_orgs {
     type: number
     sql: ${TABLE}.total_kills ;;
     value_format: "0"
+    drill_fields: [details*]
   }
 
   dimension: number_of_suicide_attacks {
@@ -59,7 +61,9 @@ view: terrorist_orgs {
     sql: ${TABLE}.deadliest_attack_kills ;;
   }
 
-  dimension: avg_kills {
+  dimension: country {}
+
+  measure: avg_kills {
     label: "Average Kills"
     description: "Average Fatalities per Attack"
     sql: ${total_kills}/${total_attacks} ;;
@@ -83,5 +87,10 @@ view: terrorist_orgs {
   measure: group_count {
     type: count
   }
+
+set: details {
+  fields: [base_table.eventid, group_name, base_table.nkill, base_table.incident_date, group_rank]
+}
+
 
 }
