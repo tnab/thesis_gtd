@@ -21,6 +21,11 @@ view: terrorist_orgs {
     sql: ${TABLE}.group_name ;;
   }
 
+  dimension: event_id {
+    type: number
+    sql:{base_table.eventid} ;;
+  }
+
   dimension: total_attacks {
     label: "Total Attacks"
     type: number
